@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Order Confirmation{% endblock %}
+{% block style %}
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    .tick-mark {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h2 {
+        color: #007bff;
+        /* Blue color */
+        font-weight: bold;
+    }
+
+    p.lead {
+        font-size: 1.25rem;
+        color: #6c757d;
+        /* Gray color */
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        /* Blue color */
+        border-color: #007bff;
+        /* Blue color */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        /* Darker blue color */
+        border-color: #004085;
+        /* Even darker blue color */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-center mt-5 pt-5 w-100">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6" style="margin-top: 7%; margin-left: 20%;">
+            <div class="card shadow p-4">
+                <div class="card-body">
+                    <div class="tick-mark mb-4">
+                        <img src="{% static 'images/tick.jpg' %}" alt="Tick Mark" width="80" height="80">
+                    </div>
+                    <h2 class="mt-4">Order Confirmed!</h2>
+                    <p class="lead">Thank you for your purchase.</p>
+                    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout{% endblock %}
+{% load crispy_forms_tags %}
+{% block style %}
+<style>
+    .checkout-container {
+        margin-top: 30px;
+    }
+    .panel-heading {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 15px;
+    }
+    .panel-body {
+        padding: 15px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .list-group-item {
+        border: none;
+        padding: 10px 0;
+    }
+    .order-summary {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+    .order-summary .list-group-item {
+        background-color: transparent;
+    }
+    .order-summary .total-price {
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container checkout-container">
+    <h2 class="mb-4">Checkout</h2>
+    {% if cart_items %}
+        <div class="row">
+            <!-- Shipping Details -->
+            <div class="col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Shipping Details</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-primary btn-block " style="margin-top:8px ;">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Order Summary</h4>
+                    </div>
+                    <div class="panel-body order-summary">
+                        <ul class="list-group">
+                            {% for item in cart_items %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="my-0">{{ item.product.name }}</h5>
+                                    <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                                </div>
+                                <span class="text-muted">{{ item.total_price|floatformat:2 }}/-</span>
+                            </li>
+                            {% endfor %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (INR)</span>
+                                <strong class="total-price">{{ total_price|floatformat:2 }}/-</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

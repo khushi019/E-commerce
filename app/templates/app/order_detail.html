@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Order Details{% endblock %}
+{% block style %}
+<style>
+    .order-detail {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f8f9fa; /* Very light grey background */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .order-detail h2 {
+        margin-bottom: 20px;
+        color: #495057; /* Dark grey color */
+    }
+    .order-info, .order-items {
+        margin-bottom: 20px;
+    }
+    .order-info p {
+        margin: 5px 0;
+        font-size: 1.1em;
+        color: #212529; /* Slightly darker grey for text */
+    }
+    .order-info h4 {
+        margin-top: 15px;
+        color: #343a40; /* Dark grey color */
+    }
+    .order-items table {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .order-items th, .order-items td {
+        padding: 10px;
+        text-align: center;
+    }
+    .order-items th {
+        background-color: #e9ecef; /* Light grey background for table header */
+        color: #212529; /* Slightly darker grey for text */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .order-items tr:nth-child(even) {
+        background-color: #f8f9fa; /* Very light grey for even rows */
+    }
+    .btn-primary {
+        background-color: #007bff; /* Bootstrap primary color */
+        border-color: #007bff;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3; /* Slightly darker blue on hover */
+        border-color: #004085;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container order-detail">
+    <h2>Order Details</h2>
+    <div class="order-info">
+        <p><strong>Order Number:</strong> {{ order.id }}</p>
+        <p><strong>Date:</strong> {{ order.created_at|date:"F j, Y, g:i a" }}</p>
+        <p><strong>Total Price:</strong> {{ order.total_price|floatformat:2 }}/-</p>
+    </div>
+    <div class="order-info">
+        <h4>Shipping Address</h4>
+        <p>{{ order.name }}</p>
+        <p>{{ order.address }}</p>
+        <p>{{ order.city }}, {{ order.zip }}</p>
+        <p>{{ order.country }}</p>
+    </div>
+    <div class="order-items">
+        <h4>Order Items</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price|floatformat:2 }}/-</td>
+                    <td>{{ item.total_price|floatformat:2 }}/-</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'my_orders' %}" class="btn btn-primary mt-3">Back to Orders</a>
+</div>
+{% endblock %}

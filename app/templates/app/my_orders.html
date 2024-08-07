@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block style %}
+<style>
+    .order-table th, .order-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .order-table th {
+        background-color: #f8f9fa;
+    }
+    .order-status {
+        font-weight: bold;
+    }
+    .order-status.Pending {
+        color: orange;
+    }
+    .order-status.Delivered {
+        color: green;
+    }
+    .order-status.Canceled {
+        color: red;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="my-4">My Orders</h2>
+    {% if orders %}
+        <table class="table table-bordered order-table">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{ order.created_at|date:"F j, Y" }}</td>
+                    <td>{{ order.total_price|floatformat:2 }}/-</td>
+                    <td class="order-status {{order.status}}">{{order.status}}</td>
+                    <td><a href="{% url 'order_detail' order.id %}" class="btn btn-primary btn-sm">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no orders.</p>
+    {% endif %}
+</div>
+{% endblock %}
