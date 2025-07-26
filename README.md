@@ -6,10 +6,14 @@ A full-stack E-commerce website built using Django that allows users to browse p
 
 ## 📸 Screenshots
 
-| Homepage                           | Product Grid                        | Cart Page                          |
-|-----------------------------------|-------------------------------------|-------------------------------------|
-| ![Homepage](screenshots/home.png) | ![Product Grid](screenshots/grid1.png) |![Product Grid](screenshots/grid2.png) | ![Cart](screenshots/cart.png) | ![Cart](screenshots/orderdetails.png)   | 
----
+| Homepage                          | Product Grid 1                      | Product Grid 2                      |
+|----------------------------------|-------------------------------------|-------------------------------------|
+| ![Homepage](screenshots/home.png) | ![Product Grid 1](screenshots/grid1.png) | ![Product Grid 2](screenshots/grid2.png) |
+
+| Cart Page                         | Order Details Page                  |
+|----------------------------------|-------------------------------------|
+| ![Cart](screenshots/cart.png)    | ![Order Details](screenshots/orderdetails.png) |
+
 
 ## 🚀 Features
 
