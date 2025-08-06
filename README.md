@@ -34,7 +34,7 @@ A full-stack E-commerce website built using Django that allows users to browse p
 |------------|----------------------------------------|
 | Backend    | Python, Django 5                       |
 | Frontend   | HTML, CSS, JavaScript, Bootstrap 5     |
-| Database   | SQLite (Default), Switchable to PostgreSQL/MySQL |
+| Database   | MySQL                                  |
 | Tools      | Pillow, django-crispy-forms, dotenv    |
 
 ---
@@ -51,7 +51,6 @@ ecommerce/
 ├── media/                  # Uploaded media files
 ├── screenshots/            # Screenshots for documentation
 ├── .env                    # Environment config (optional)
-├── db.sqlite3              # SQLite database
 ├── requirements.txt        # Python dependencies
 ├── manage.py               # Django management script
 └── README.md               # Project documentation
@@ -91,6 +90,12 @@ Create a `.env` file in the root directory:
 ```env
 SECRET_KEY=your-django-secret-key
 DEBUG=True
+NAME=your_database_name
+USER=your_user_name
+PASSWORD=your_password
+HOST=localhost
+PORT=3306
+ENGINE=django.db.backends.mysql
 ```
 
 You can load this using `python-dotenv`.
