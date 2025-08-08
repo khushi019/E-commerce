@@ -12,7 +12,7 @@ A full-stack E-commerce website built using Django that allows users to browse p
 
 | Cart Page                         | Order Details Page                  |
 |----------------------------------|-------------------------------------|
-| ![Cart](screenshots/cart.png)    | ![Order Details](screenshots/orderdetails.png) |
+| ![Cart](screenshots/cart.png)    | ![Order Details](screenshots/order_detail.png) |
 
 
 ## 🚀 Features
